@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topico2.Projetar Interface"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topico3.Interface Explicita", "Topico3.Interface Explicita\Topico3.Interface Explicita.csproj", "{0FB098FE-926D-4A5E-9EA4-D410437AB438}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topico4.Classe Base", "Topico4.Classe Base\Topico4.Classe Base.csproj", "{6893EC1C-9F07-44BC-814C-1BC129334C4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0FB098FE-926D-4A5E-9EA4-D410437AB438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FB098FE-926D-4A5E-9EA4-D410437AB438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FB098FE-926D-4A5E-9EA4-D410437AB438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6893EC1C-9F07-44BC-814C-1BC129334C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6893EC1C-9F07-44BC-814C-1BC129334C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6893EC1C-9F07-44BC-814C-1BC129334C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6893EC1C-9F07-44BC-814C-1BC129334C4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

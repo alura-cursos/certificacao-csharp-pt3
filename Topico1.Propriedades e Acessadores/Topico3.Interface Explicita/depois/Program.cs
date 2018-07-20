@@ -11,19 +11,21 @@ namespace Topico3
         static void Main(string[] args)
         {
             /// <image url="$(ProjectDir)\Cracha.png" />
-            /// < image url="$(ProjectDir)\Cracha2.png" />
+            /// <image url="$(ProjectDir)\Cracha2.png" />
             Funcionario funcionario = new Funcionario(1500);
             funcionario.CPF = "123.456.789-00";
             funcionario.Nome = "josé da silva";
             funcionario.DataNascimento = new DateTime(2000, 1, 1);
 
-            funcionario.CargaHorariaMensal = 168;
+            ((IFuncionario)funcionario).CargaHorariaMensal = 168;
+            ((IPlantonista)funcionario).CargaHorariaMensal = 32;
             funcionario.EfeturarPagamento();
             funcionario.CrachaGerado += (s, e) =>
             {
                 Console.WriteLine("Crachá gerado");
             };
-            funcionario.GerarCracha();
+            ((IFuncionario)funcionario).GerarCracha();
+            ((IPlantonista)funcionario).GerarCracha();
         }
     }
 
@@ -43,7 +45,13 @@ namespace Topico3
         void EfeturarPagamento();
     }
 
-    class Funcionario : IFuncionario
+    interface IPlantonista
+    {
+        int CargaHorariaMensal { get; set; }
+        void GerarCracha();
+    }
+
+    class Funcionario : IFuncionario, IPlantonista
     {
         public string CPF { get; set; }
         public string Nome { get; set; }
@@ -51,7 +59,15 @@ namespace Topico3
 
         public event EventHandler CrachaGerado;
 
-        public void GerarCracha()
+        void IFuncionario.GerarCracha()
+        {
+            if (CrachaGerado != null)
+            {
+                CrachaGerado(this, new EventArgs());
+            }
+        }
+
+        void IPlantonista.GerarCracha()
         {
             if (CrachaGerado != null)
             {
@@ -61,7 +77,9 @@ namespace Topico3
 
         public decimal Salario { get; }
 
-        public int CargaHorariaMensal { get; set; }
+        int IFuncionario.CargaHorariaMensal { get; set; }
+
+        int IPlantonista.CargaHorariaMensal { get; set; }
 
         public Funcionario(decimal salario)
         {

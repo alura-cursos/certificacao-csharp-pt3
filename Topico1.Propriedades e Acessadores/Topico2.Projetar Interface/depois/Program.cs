@@ -10,19 +10,43 @@ namespace Topico2
     {
         static void Main(string[] args)
         {
-            Televisao eletro1 = new Televisao();
-            Abajur eletro2 = new Abajur();
-            Lanterna eletro3 = new Lanterna();
-            Radio eletro4 = new Radio();
+            IEletrodomestico eletro1 = new Televisao();
+            IEletrodomestico eletro2 = new Abajur();
+            IEletrodomestico eletro3 = new Lanterna();
+            IEletrodomestico eletro4 = new Radio();
+
+            eletro1 = new Abajur();
+            eletro2 = new Televisao();
+            eletro3 = new Radio();
+            eletro4 = new Lanterna();
         }
     }
 
-    class Televisao
+    interface IEletrodomestico
+    {
+        event EventHandler Ligou;
+        event EventHandler Desligou;
+
+        void Desligar();
+        void Ligar();
+    }
+
+    interface IIluminacao
+    {
+        double PotenciaDaLampada { get; set; }
+    }
+
+    interface IRadioReceptor
+    {
+        double Frequencia { get; set; }
+    }
+
+    class Televisao : IEletrodomestico, IRadioReceptor
     {
         public event EventHandler Ligou;
         public event EventHandler Desligou;
 
-        public double FrequenciaDoCanal { get; set; }
+        public double Frequencia { get; set; }
 
         public void Desligar()
         {
@@ -37,23 +61,7 @@ namespace Topico2
         }
     }
 
-    class Abajur
-    {
-        public int PotenciaDaLampada { get; set; }
-
-        public event EventHandler Ligou;
-        public event EventHandler Desligou;
-
-        public void Desligar()
-        {
-        }
-
-        public void Ligar()
-        {
-        }
-    }
-
-    class Lanterna
+    class Abajur : IEletrodomestico, IIluminacao
     {
         public double PotenciaDaLampada { get; set; }
 
@@ -69,12 +77,28 @@ namespace Topico2
         }
     }
 
-    class Radio
+    class Lanterna : IEletrodomestico, IIluminacao
+    {
+        public double PotenciaDaLampada { get; set; }
+
+        public event EventHandler Ligou;
+        public event EventHandler Desligou;
+
+        public void Desligar()
+        {
+        }
+
+        public void Ligar()
+        {
+        }
+    }
+
+    class Radio : IEletrodomestico, IRadioReceptor
     {
         public event EventHandler Ligou;
         public event EventHandler Desligou;
 
-        public double FrequenciaDaEstacao { get; set; }
+        public double Frequencia { get; set; }
 
         public void Desligar()
         {
